@@ -5,16 +5,15 @@ import { LoginRequired } from "./LoginRequired";
 import { LoadingState } from "./LoadingState";
 
 export const AuthManager = (props: PropsWithChildren) => {
-  const { user, isLoading } = useAuth0();
-  const isAuth = isLoading || user ? true : false;
+  const { isLoading, isAuthenticated } = useAuth0();
 
-  // `ready` indicates if the initial status has been successfully pulled from the server
-  const [_, { ready }] = useSelectorWithSync(() => {});
+  // `ready` indicates if the initial Glue4 state
+  // has been successfully sync'd from the server
+  const [, { ready }] = useSelectorWithSync(() => {});
 
-  return (
-    <>
-      {!isAuth ? <LoginRequired /> : !ready && <LoadingState />}
-      {isAuth && ready && props.children}
-    </>
-  );
+  if (!ready || isLoading) {
+    return <LoadingState />;
+  }
+
+  return !isAuthenticated ? <LoginRequired /> : <>{props.children}</>;
 };

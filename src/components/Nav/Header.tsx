@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className="bg-gray-200 p-4 shadow-md w-screen">
       <div className="mx-auto flex items-center justify-between">
-        <a>
+        <a href="/">
           <h1 className="text-lg font-semibold text-gray-700">
             Glue4 Skeleton App
           </h1>

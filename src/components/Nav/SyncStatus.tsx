@@ -8,9 +8,7 @@ const statusColorMapper = {
 
 export const SyncStatus = () => {
   // The sync selector allows you to access the underlying sync status
-  const [_state, { pullStatus, pushStatus, ready }] = useSelectorWithSync(
-    () => {}
-  );
+  const [, { pullStatus, pushStatus }] = useSelectorWithSync(() => {});
 
   return (
     <div>
